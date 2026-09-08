@@ -1,0 +1,110 @@
+package com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.LinkedListCharactersFunctions;
+
+
+import com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.Structures.LinkedListCharacters;
+import com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.Structures.LinkedListNodeCharacters;
+import com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.Structures.*;
+
+public class LinkedListCharactersFunctions{
+	public static LinkedListCharacters CreateLinkedListCharacter(){
+		LinkedListCharacters ll;
+
+		ll = new LinkedListCharacters();
+		ll.first = new LinkedListNodeCharacters();
+		ll.last = ll.first;
+		ll.last.end = true;
+
+		return ll;
+	}
+
+	public static void LinkedListAddCharacter(LinkedListCharacters ll, char value){
+		ll.last.end = false;
+		ll.last.value = value;
+		ll.last.next = new LinkedListNodeCharacters();
+		ll.last.next.end = true;
+		ll.last = ll.last.next;
+	}
+
+	public static char [] LinkedListCharactersToArray(LinkedListCharacters ll){
+		char [] array;
+		double length, i;
+		LinkedListNodeCharacters node;
+
+		node = ll.first;
+
+		length = LinkedListCharactersLength(ll);
+
+		array = new char [(int)(length)];
+
+		for(i = 0d; i < length; i = i + 1d){
+			array[(int)(i)] = node.value;
+			node = node.next;
+		}
+
+		return array;
+	}
+
+	public static double LinkedListCharactersLength(LinkedListCharacters ll){
+		double l;
+		LinkedListNodeCharacters node;
+
+		l = 0d;
+		node = ll.first;
+		for(; !node.end; ){
+			node = node.next;
+			l = l + 1d;
+		}
+
+		return l;
+	}
+
+	public static void FreeLinkedListCharacter(LinkedListCharacters ll){
+		LinkedListNodeCharacters node, prev;
+
+		node = ll.first;
+
+		for(; !node.end; ){
+			prev = node;
+			node = node.next;
+			delete(prev);
+		}
+
+		delete(node);
+	}
+
+	public static void LinkedListCharactersAddString(LinkedListCharacters ll, char [] str){
+		double i;
+
+		for(i = 0d; i < str.length; i = i + 1d){
+			LinkedListAddCharacter(ll, str[(int)(i)]);
+		}
+	}
+
+	public static void LinkedListInsertCharacter(LinkedListCharacters ll, double index, char value){
+		double i;
+		LinkedListNodeCharacters node, tmp;
+
+		if(index == 0d){
+			tmp = ll.first;
+			ll.first = new LinkedListNodeCharacters();
+			ll.first.next = tmp;
+			ll.first.value = value;
+			ll.first.end = false;
+		}else{
+			node = ll.first;
+			for(i = 0d; i < index - 1d; i = i + 1d){
+				node = node.next;
+			}
+
+			tmp = node.next;
+			node.next = new LinkedListNodeCharacters();
+			node.next.next = tmp;
+			node.next.value = value;
+			node.next.end = false;
+		}
+	}
+
+  public static void delete(Object object){
+    // Java has garbage collection.
+  }
+}
