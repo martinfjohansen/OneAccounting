@@ -28,3 +28,25 @@ The library is available in the following languages. More can be added, create a
  - [Ruby](libs/Ruby)
 
 ## Roadmap
+
+Planned future additions to the library.
+
+ - Profit and Loss / Income Statement
+ - Basic Cash Flow (direct or indirect)
+ - Currency formatters and multi-currency support
+ - Generally Accepted Accounting Principles (United States) / GAAP
+ - Norwegian Standard Account Plan
+ - Depreciation / amortization helpers
+ - Inventory basics / cost-of-goods helpers
+ - Tax-related computations
+ - Improved testing and quality assurance
+ - Trial Balance
+ - Enhanced Accruals, Deferrals and Reversing Entries
+ - Accounts Receivable / Payable Aging and Statements
+ - Period Closing & Opening Balances
+ - Loading and storing ledgers and reports
+ - Printable reports
+
+
+
+
