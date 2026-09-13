@@ -46,7 +46,35 @@ Planned future additions to the library.
  - Period Closing & Opening Balances
  - Loading and storing ledgers and reports
  - Printable reports
+ 
+## Progress
 
+| Feature | Specified | Draft Code | Some Tests | Complete Code | Throrough tests | Analyzed | In Production | Battle tested | 
+| :---    | :---:      | :---:      | :---:         | :---:      | :---:           | :--:     | :--:          | :--:          |
+| Double-entry Bookkeeping    |   | ✅ | ✅ |   |   |   |   |   |   |
+| Fixed point Arithmetic      |   | ✅ | ✅ |   |   |   |   |   |   |
+| Hierarchical Accounts       |   | ✅ | ✅ |   |   |   |   |   |   |
+| Balance Sheet               |   | ✅ | ✅ |   |   |   |   |   |   |
+| Accruals                    |   | ✅ | ✅ |   |   |   |   |   |   |
+| IFRS Account Plan           |   | ✅ | ✅ |   |   |   |   |   |   |
+| Custom Account Plans        |   | ✅ | ✅ |   |   |   |   |   |   |
+| Transaction Scripts         |   | ✅ | ✅ |   |   |   |   |   |   |
+| Export Balance Sheet        |   | ✅ |    |   |   |   |   |   |   |
+| Flexible Dates Handling     |   | ✅ | ✅ | ✅ |   |   |   |   |   |
+| Income Statement            |   |    |    |   |   |   |   |   |   |
+| Basic Cash Flow Direct      |    |    |   |   |   |   |   |   |   |
+| Basic Cash Flow Indirect    |    |    |   |   |   |   |   |   |   |
+| Multi-Currency Support      |    |    |   |   |   |   |   |   |   |
+| GAAP                        |    |    |   |   |   |   |   |   |   |
+| Norwegian Account Plan      |    |    |   |   |   |   |   |   |   |
+| Depreciation / Amortization |    |    |   |   |   |   |   |   |   |
+| Inventory Basics            |    |    |   |   |   |   |   |   |   |
+| Tax-related Computations    |    |    |   |   |   |   |   |   |   |
+| Trial Balance               |    |    |   |   |   |   |   |   |   |
+| Deferrals and Reversing     |    |    |   |   |   |   |   |   |   |
+| Period Closing/Opening Bal. |    |    |   |   |   |   |   |   |   |
+| Persistent ledgers          |    |    |   |   |   |   |   |   |   |
+| Printable reports           |    |    |   |   |   |   |   |   |   |
 
 
 
