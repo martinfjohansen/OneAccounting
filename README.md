@@ -13,6 +13,7 @@ A library of accounting computations in many programming languages. Allows embed
  - Export balance sheet as text or HTML
  - Flexible handling of dates
  - Luhn validator and ISIN tools
+ - Bar codes and square codes (UPC, EAN, QR)
  - Norwegian id tools (org.nr, f.nr, KID, NETS OCR)
 
 ## Programming languages
