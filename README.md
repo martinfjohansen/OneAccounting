@@ -12,20 +12,22 @@ A library of accounting computations in many programming languages. Allows embed
  - Import transactions from scripts
  - Export balance sheet as text or HTML
  - Flexible handling of dates
+ - Luhn validator and ISIN tools
+ - Norwegian id tools (org.nr, f.nr, KID, NETS OCR)
 
 ## Programming languages
 The library is available in the following languages. More can be added, create a ticket to request support for another language.
 
- - [Java](libs/Java)
- - [C](libs/C)
- - [C++](libs/Cpp)
- - [JavaScript](libs/JavaScript)
- - [TypeScript](libs/TypeScript)
- - [C#](libs/CSharp)
- - [PHP](libs/PHP)
- - [Python](libs/Python)
- - [Swift](libs/Swift)
- - [Ruby](libs/Ruby)
+ - [Java](dist/Java)
+ - [C](dist/C)
+ - [C++](dist/Cpp)
+ - [JavaScript](dist/JavaScript)
+ - [TypeScript](dist/TypeScript)
+ - [C#](dist/CSharp)
+ - [PHP](dist/PHP)
+ - [Python](dist/Python)
+ - [Swift](dist/Swift)
+ - [Ruby](dist/Ruby)
 
 ## Roadmap
 
