@@ -30,7 +30,7 @@ The library is available in the following languages. More can be added, create a
  - [Python](dist/Python)
  - [Swift](dist/Swift)
  - [Ruby](dist/Ruby)
- - [Visual Basic](disk/VB)
+ - [Visual Basic](dist/VB)
 
 ## Roadmap
 
