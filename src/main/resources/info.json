@@ -4,7 +4,24 @@
   "organization namespace": "no.inductive.libraries",
   "scientific namespace": "economics.accounting.general",
   "imports": [
-    ["", "no.inductive.libraries", "Accounting", "0.1.1"]
+    ["", "no.inductive.libraries", "Accounting", "0.1.1"],
+    ["", "no.inductive.libraries", "LuhnAlgorithm", "0.1.5"],
+    ["", "no.inductive.libraries", "ISIN", "0.1.2"],
+    ["", "no.inductive.libraries", "EAN13", "1.0.15"],
+    ["", "no.inductive.libraries", "EAN8", "1.0.15"],
+    ["", "no.inductive.libraries", "UPC", "1.0.16"],
+    ["", "no.inductive.libraries", "UPCE", "1.0.16"],
+    ["", "no.inductive.idea10.programs", "Code128", "1.0.16"],
+    ["", "no.inductive.libraries", "Code39", "1.0.15"],
+    ["", "no.inductive.libraries", "QRCodes", "0.1.2"],
+    ["", "no.inductive.libraries", "orgnummer", "0.2.3"],
+    ["", "no.inductive.libraries", "foedselsnummer", "0.2.3"],
+    ["", "no.inductive.libraries", "kommunenummer", "0.1.3"],
+    ["", "no.inductive.libraries", "postnummer", "0.1.2"],
+    ["", "no.deploi.admin", "OCRGiro", "0.1.1"],
+    ["", "no.inductive.libraries", "Plots", "0.1.12"],
+    ["", "no.inductive.libraries", "BasicStatistics", "0.1.14"],
+    ["", "no.inductive.idea10.programs", "arbitraryPrecision", "0.2.5"]
   ],
   "development imports": [
     ["", "no.inductive.idea10.programs", "testing", "0.1.9"]
