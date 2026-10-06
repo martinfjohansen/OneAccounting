@@ -22735,8 +22735,8 @@ _Bool ParseMatrixFromString(MatrixReference *aref, char16_t *matrixString, size_
   return success;
 }
 char16_t *MatrixToString(size_t *returnArrayLength, Matrix *matrix, double digitsAfterPoint){
-  char16_t *s1, *s2;
-  size_t s1Length, s2Length;
+  char16_t *s1, *s2, *tmp;
+  size_t s1Length, s2Length, tmpLength;
   double n, m, element;
 
   s1 = (char16_t*)calloc(sizeof(char16_t) * (0.0), 1);
@@ -22746,7 +22746,8 @@ char16_t *MatrixToString(size_t *returnArrayLength, Matrix *matrix, double digit
     for(m = 0.0; m < NumberOfColumns(matrix); m = m + 1.0){
       element = Element(matrix, n, m);
       element = RoundToDigits(element, digitsAfterPoint);
-      s2 = strAppendString(&s2Length, s1, s1Length, CreateStringDecimalFromNumber(element), CreateStringDecimalFromNumber(element)Length);
+      tmp = CreateStringDecimalFromNumber(&tmpLength, element);
+      s2 = strAppendString(&s2Length, s1, s1Length, tmp, tmpLength);
       free(s1);
       s1 = s2;
       s1Length = s2Length;
@@ -22767,15 +22768,16 @@ char16_t *MatrixToString(size_t *returnArrayLength, Matrix *matrix, double digit
   return s1;
 }
 char16_t *MatrixArrayToString(size_t *returnArrayLength, Matrix **matrices, size_t matricesLength, double digitsAfterPoint){
-  char16_t *s1, *s2;
-  size_t s1Length, s2Length;
+  char16_t *s1, *s2, *tmp;
+  size_t s1Length, s2Length, tmpLength;
   double i;
 
   s1 = (char16_t*)calloc(sizeof(char16_t) * (0.0), 1);
   s1Length = 0.0;
 
   for(i = 0.0; i < (double)matricesLength; i = i + 1.0){
-    s2 = strAppendString(&s2Length, s1, s1Length, MatrixToString(matrices[(int)(i)], digitsAfterPoint), MatrixToString(matrices[(int)(i)], digitsAfterPoint)Length);
+    tmp = MatrixToString(&tmpLength, matrices[(int)(i)], digitsAfterPoint);
+    s2 = strAppendString(&s2Length, s1, s1Length, tmp, tmpLength);
     free(s1);
     s1 = s2;
     s1Length = s2Length;
