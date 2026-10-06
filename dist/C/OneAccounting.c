@@ -278,10 +278,6 @@ struct Success{
   _Bool success;
 };
 
-struct RGBABitmapImageReference{
-  RGBABitmapImage *image;
-};
-
 struct Rectangle{
   double x1;
   double x2;
