@@ -1,0 +1,8 @@
+package com.martinfjohansen.oneaccounting.arbitraryPrecision.ArbitraryPrecisionFixedPointNumbers;
+
+import com.martinfjohansen.oneaccounting.arbitraryPrecision.ArbitraryPrecisionIntegers.ArbitraryPrecisionInteger;
+
+public class ArbitraryPrecisionFixedPointNumber{
+	public ArbitraryPrecisionInteger baseNumber;
+	public double pointPosition;
+}

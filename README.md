@@ -14,7 +14,7 @@ A library of accounting computations in many programming languages. Allows embed
  - Flexible handling of dates
  - Luhn validator and ISIN tools
  - Bar codes and square codes (UPC, EAN, QR)
- - Norwegian id tools (org.nr, f.nr, KID, NETS OCR)
+ - Norwegian id tools (org.nr, f.nr, municipality numbers, post numbers, KID, NETS OCR)
  - Statistics Tools
 
 ## Programming languages

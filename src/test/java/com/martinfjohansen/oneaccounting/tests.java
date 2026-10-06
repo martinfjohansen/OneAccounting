@@ -14,8 +14,8 @@ import static com.martinfjohansen.oneaccounting.DataStructures.Array.Arrays.Arra
 import static com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Structures.AddStructToArray;
 import static com.martinfjohansen.oneaccounting.datetime.DateCalculations.DateCalculations.*;
 import static com.martinfjohansen.oneaccounting.references.references.references.CreateNumberReference;
-import static com.martinfjohansen.oneaccounting.testing.testing.AssertStringEquals;
-import static com.martinfjohansen.oneaccounting.testing.testing.AssertTrue;
+import static com.martinfjohansen.oneaccounting.testing.testing.testing.AssertStringEquals;
+import static com.martinfjohansen.oneaccounting.testing.testing.testing.AssertTrue;
 
 public class tests {
     public static double test(){
