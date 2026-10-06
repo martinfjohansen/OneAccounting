@@ -1,4 +1,4 @@
-package com.martinfjohansen.oneaccounting.testing;
+package com.martinfjohansen.oneaccounting.testing.testing;
 
 import com.martinfjohansen.oneaccounting.references.references.NumberReference;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
@@ -79,7 +79,7 @@ public class testing{
 		}
 	}
 
-  public static void delete(Object object){
-    // Java has garbage collection.
-  }
+	public static void delete(Object object){
+		// Java has garbage collection.
+	}
 }

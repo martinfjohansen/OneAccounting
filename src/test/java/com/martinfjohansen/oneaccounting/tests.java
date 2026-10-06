@@ -6,21 +6,16 @@ import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.DataRef
 import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Structure;
 import com.martinfjohansen.oneaccounting.FixedPointArithmetic.FixedPointArithmetic15d.FixedPoint15d;
 import com.martinfjohansen.oneaccounting.datetime.DateCalculations.Date;
-import com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.Structures.LinkedListCharacters;
 import com.martinfjohansen.oneaccounting.references.references.NumberReference;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
 
 import static com.martinfjohansen.oneaccounting.Accounting.Accounting.Accounting.*;
-import static com.martinfjohansen.oneaccounting.DataStructures.Array.Arrays.Arrays.*;
-import static com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Structures.*;
-import static com.martinfjohansen.oneaccounting.FixedPointArithmetic.FixedPointArithmetic15d.FixedPointArithmetic15d.*;
-import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.arraysStringsEqual;
+import static com.martinfjohansen.oneaccounting.DataStructures.Array.Arrays.Arrays.CreateArray;
+import static com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Structures.AddStructToArray;
 import static com.martinfjohansen.oneaccounting.datetime.DateCalculations.DateCalculations.*;
-import static com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.LinkedListCharactersFunctions.LinkedListCharactersFunctions.*;
-import static com.martinfjohansen.oneaccounting.numbers.StringToNumber.StringToNumber.CreateNumberFromDecimalString;
 import static com.martinfjohansen.oneaccounting.references.references.references.CreateNumberReference;
-import static com.martinfjohansen.oneaccounting.strstrings.strings.strings.*;
-import static com.martinfjohansen.oneaccounting.testing.testing.*;
+import static com.martinfjohansen.oneaccounting.testing.testing.AssertStringEquals;
+import static com.martinfjohansen.oneaccounting.testing.testing.AssertTrue;
 
 public class tests {
     public static double test(){
@@ -123,11 +118,11 @@ public class tests {
         d = CreateFixedPointForDynamicLedger(ledger);
 
         /* Case:
-           * A domain is renewed for the period 2025-12-06 - 2026-12-05.
-           * it is invoiced 2025-09-17 with a due date 2025-10-01, amount 125.00
-           * It is paid 2025-10-01.
-           * It is renewed 2025-11-08 by paying the renewal fee 112.50
-           * The domain must be correctly accounted for using accruals for each month
+         * A domain is renewed for the period 2025-12-06 - 2026-12-05.
+         * it is invoiced 2025-09-17 with a due date 2025-10-01, amount 125.00
+         * It is paid 2025-10-01.
+         * It is renewed 2025-11-08 by paying the renewal fee 112.50
+         * The domain must be correctly accounted for using accruals for each month
          */
 
         // 1.8.1. Loans and receivables
@@ -298,12 +293,12 @@ public class tests {
         AddDaysToDate(to, -1d, message);
         balances = CreateArray();
         for(i = 0; i < 12d+6d; i = i + 1d){
-            AddDaysToDate(to, 1d, message);
-            AddMonthsToDate(to, 1d);
-            AddDaysToDate(to, -1d, message);
+            success = AddDaysToDate(to, 1d, message);
+            success = success && AddMonthsToDate(to, 1d, message);
+            success = success && AddDaysToDate(to, -1d, message);
 
             balanceSheetRef = new DataReference();
-            success = ComputeAccountBalances(sledger, 1d, to, balanceSheetRef);
+            success = success && ComputeAccountBalances(sledger, 1d, to, balanceSheetRef);
 
             if(success){
                 AddStructToArray(balances, balanceSheetRef.data.structure);

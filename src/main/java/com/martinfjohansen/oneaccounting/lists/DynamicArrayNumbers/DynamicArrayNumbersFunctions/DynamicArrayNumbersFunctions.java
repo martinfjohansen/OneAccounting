@@ -1,21 +1,13 @@
 package com.martinfjohansen.oneaccounting.lists.DynamicArrayNumbers.DynamicArrayNumbersFunctions;
 
-import static java.lang.Math.*;
-
 import com.martinfjohansen.oneaccounting.lists.DynamicArrayNumbers.Structures.DynamicArrayNumbers;
 import com.martinfjohansen.oneaccounting.lists.LinkedListNumbers.Structures.LinkedListNodeNumbers;
 import com.martinfjohansen.oneaccounting.lists.LinkedListNumbers.Structures.LinkedListNumbers;
 import com.martinfjohansen.oneaccounting.references.references.BooleanReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
 
-import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.*;
-
-
-import com.martinfjohansen.oneaccounting.lists.LinkedListNumbers.Structures.*;
-
+import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.arraysCopyNumberArray;
 import static com.martinfjohansen.oneaccounting.lists.LinkedListNumbers.LinkedListNumbersFunctions.LinkedListNumbersFunctions.*;
-
-import com.martinfjohansen.oneaccounting.lists.DynamicArrayNumbers.Structures.*;
+import static java.lang.Math.*;
 
 public class DynamicArrayNumbersFunctions{
 	public static DynamicArrayNumbers CreateDynamicArrayNumbers(){

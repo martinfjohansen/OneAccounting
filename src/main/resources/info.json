@@ -1,13 +1,13 @@
 {
   "name": "OneAccounting",
-  "version": "0.1.0-SNAPSHOT",
+  "version": "0.2.0-SNAPSHOT",
   "organization namespace": "no.inductive.libraries",
   "scientific namespace": "economics.accounting.general",
   "imports": [
-    ["", "no.inductive.libraries", "Accounting", "0.1.0-SNAPSHOT"]
+    ["", "no.inductive.libraries", "Accounting", "0.1.1"]
   ],
   "development imports": [
-    ["", "no.inductive.idea10.programs", "testing", "0.1.8"]
+    ["", "no.inductive.idea10.programs", "testing", "0.1.9"]
   ],
   "reprefix": [],
   "private": false,

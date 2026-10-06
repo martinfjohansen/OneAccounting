@@ -1,18 +1,12 @@
 package com.martinfjohansen.oneaccounting.lists.DynamicArrayCharacters.DynamicArrayCharactersFunctions;
 
-import static java.lang.Math.*;
-
-import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.*;
-
-
 import com.martinfjohansen.oneaccounting.lists.DynamicArrayCharacters.Structures.DynamicArrayCharacters;
 import com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.Structures.LinkedListCharacters;
 import com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.Structures.LinkedListNodeCharacters;
-import com.martinfjohansen.oneaccounting.lists.DynamicArrayCharacters.Structures.*;
 
+import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.arraysCopyString;
 import static com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.LinkedListCharactersFunctions.LinkedListCharactersFunctions.*;
-
-import com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.Structures.*;
+import static java.lang.Math.*;
 
 public class DynamicArrayCharactersFunctions{
 	public static DynamicArrayCharacters CreateDynamicArrayCharacters(){

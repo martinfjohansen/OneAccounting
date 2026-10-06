@@ -1,17 +1,15 @@
 package com.martinfjohansen.oneaccounting.datetime.DateCalculations;
 
-import static java.lang.Math.*;
-
 import com.martinfjohansen.oneaccounting.references.references.BooleanReference;
 import com.martinfjohansen.oneaccounting.references.references.NumberArrayReference;
 import com.martinfjohansen.oneaccounting.references.references.NumberReference;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
-import static com.martinfjohansen.oneaccounting.references.references.references.*;
-
-import static com.martinfjohansen.oneaccounting.math.math.math.*;
 
 import static com.martinfjohansen.oneaccounting.cCharacters.Characters.Characters.*;
+import static com.martinfjohansen.oneaccounting.math.math.math.DivisibleBy;
+import static com.martinfjohansen.oneaccounting.math.math.math.IsInteger;
+import static com.martinfjohansen.oneaccounting.references.references.references.FreeStringReference;
+import static java.lang.Math.floor;
 
 public class DateCalculations{
 	public static Date CreateDate(double year, double month, double day){
@@ -460,18 +458,33 @@ public class DateCalculations{
 		double daysInThisMonth;
 
 		if(date.year >= 1752d){
-			if(date.month >= 1d && date.month <= 12d){
-				daysInMonth = GetDaysInMonth(date.year);
-				daysInThisMonth = daysInMonth[(int)(date.month)];
-				if(date.day >= 1d && date.day <= daysInThisMonth){
-					valid = true;
+			if(IsInteger(date.year)){
+				if(date.month >= 1d && date.month <= 12d){
+					if(IsInteger(date.month)){
+						daysInMonth = GetDaysInMonth(date.year);
+						daysInThisMonth = daysInMonth[(int)(date.month)];
+						if(date.day >= 1d && date.day <= daysInThisMonth){
+							if(IsInteger(date.day)){
+								valid = true;
+							}else{
+								valid = false;
+								message.string = "Day must be an integer.".toCharArray();
+							}
+						}else{
+							valid = false;
+							message.string = "The month does not have the given day number.".toCharArray();
+						}
+					}else{
+						valid = false;
+						message.string = "Month must be an integer.".toCharArray();
+					}
 				}else{
 					valid = false;
-					message.string = "The month does not have the given day number.".toCharArray();
+					message.string = "Month must be between 1 and 12, inclusive.".toCharArray();
 				}
 			}else{
 				valid = false;
-				message.string = "Month must be between 1 and 12, inclusive.".toCharArray();
+				message.string = "Year must be an integer.".toCharArray();
 			}
 		}else{
 			valid = false;
@@ -510,8 +523,12 @@ public class DateCalculations{
 		a.day = b.day;
 	}
 
-	public static void AddMonthsToDate(Date date, double months){
+	public static boolean AddMonthsToDate(Date date, double months, StringReference message){
 		double i;
+		boolean success;
+		Date backup;
+
+		backup = CopyDate(date);
 
 		if(months > 0d){
 			for(i = 0d; i < months; i = i + 1d){
@@ -533,6 +550,16 @@ public class DateCalculations{
 				}
 			}
 		}
+
+		success = IsValidDate(date, message);
+
+		if(success){
+		}else{
+			/* Restore old date*/
+			AssignDate(date, backup);
+		}
+
+		return success;
 	}
 
 	public static boolean DateToStringISO8601WithCheck(Date date, StringReference datestr, StringReference message){
@@ -686,12 +713,24 @@ public class DateCalculations{
 	}
 
 	public static boolean DateLessThan(Date a, Date b){
-		double aDays, bDays;
+		boolean less;
 
-		aDays = DateToDays(a);
-		bDays = DateToDays(b);
+		less = false;
 
-		return aDays < bDays;
+		if(a.year < b.year){
+			less = true;
+		}else if(a.year == b.year){
+			if(a.month < b.month){
+				less = true;
+			}else if(a.month == b.month){
+				if(a.day < b.day){
+					less = true;
+				}else{
+				}
+			}
+		}
+
+		return less;
 	}
 
   public static void delete(Object object){

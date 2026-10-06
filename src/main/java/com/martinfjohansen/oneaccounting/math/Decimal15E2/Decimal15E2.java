@@ -1,13 +1,11 @@
 package com.martinfjohansen.oneaccounting.math.Decimal15E2;
 
-import static java.lang.Math.*;
-
 import com.martinfjohansen.oneaccounting.references.references.BooleanReference;
 import com.martinfjohansen.oneaccounting.references.references.NumberReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
 
-
-import static com.martinfjohansen.oneaccounting.math.math.math.*;
+import static com.martinfjohansen.oneaccounting.math.math.math.IsInteger;
+import static com.martinfjohansen.oneaccounting.math.math.math.Round;
+import static java.lang.Math.*;
 
 public class Decimal15E2{
 	public static double D15Add(double a, double b, BooleanReference overflow){

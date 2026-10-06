@@ -292,6 +292,7 @@ public class Characters{
 
 	public static char cDecimalDigitToCharacter(double digit){
 		char c;
+
 		if(digit == 1d){
 			c = '1';
 		}else if(digit == 2d){
@@ -313,6 +314,7 @@ public class Characters{
 		}else{
 			c = '0';
 		}
+
 		return c;
 	}
 
@@ -337,6 +339,86 @@ public class Characters{
 			digit = 8d;
 		}else if(c == '9'){
 			digit = 9d;
+		}else{
+			digit = 0d;
+		}
+
+		return digit;
+	}
+
+	public static char cHexadecimalDigitToCharacter(double digit){
+		char c;
+
+		if(digit == 1d){
+			c = '1';
+		}else if(digit == 2d){
+			c = '2';
+		}else if(digit == 3d){
+			c = '3';
+		}else if(digit == 4d){
+			c = '4';
+		}else if(digit == 5d){
+			c = '5';
+		}else if(digit == 6d){
+			c = '6';
+		}else if(digit == 7d){
+			c = '7';
+		}else if(digit == 8d){
+			c = '8';
+		}else if(digit == 9d){
+			c = '9';
+		}else if(digit == 10d){
+			c = 'A';
+		}else if(digit == 11d){
+			c = 'B';
+		}else if(digit == 12d){
+			c = 'C';
+		}else if(digit == 13d){
+			c = 'D';
+		}else if(digit == 14d){
+			c = 'E';
+		}else if(digit == 15d){
+			c = 'F';
+		}else{
+			c = '0';
+		}
+
+		return c;
+	}
+
+	public static double cCharacterToHexadecimalDigit(char c){
+		double digit;
+
+		if(c == '1'){
+			digit = 1d;
+		}else if(c == '2'){
+			digit = 2d;
+		}else if(c == '3'){
+			digit = 3d;
+		}else if(c == '4'){
+			digit = 4d;
+		}else if(c == '5'){
+			digit = 5d;
+		}else if(c == '6'){
+			digit = 6d;
+		}else if(c == '7'){
+			digit = 7d;
+		}else if(c == '8'){
+			digit = 8d;
+		}else if(c == '9'){
+			digit = 9d;
+		}else if(c == 'A'){
+			digit = 10d;
+		}else if(c == 'B'){
+			digit = 11d;
+		}else if(c == 'C'){
+			digit = 12d;
+		}else if(c == 'D'){
+			digit = 13d;
+		}else if(c == 'E'){
+			digit = 14d;
+		}else if(c == 'F'){
+			digit = 15d;
 		}else{
 			digit = 0d;
 		}

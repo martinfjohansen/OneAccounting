@@ -87,9 +87,13 @@ public class references{
 
 	public static StringReference CreateStringReference(char [] value){
 		StringReference ref;
+		double i;
 
 		ref = new StringReference();
-		ref.string = value;
+		ref.string = new char [(int)(value.length)];
+		for(i = 0d; i < value.length; i = i + 1d){
+			ref.string[(int)(i)] = value[(int)(i)];
+		}
 
 		return ref;
 	}
@@ -137,13 +141,34 @@ public class references{
 	}
 
 	public static void FreeStringArrayReference(StringArrayReference stringArrayReference){
-		double i;
-
-		for(i = 0d; i < stringArrayReference.stringArray.length; i = i + 1d){
-			delete(stringArrayReference.stringArray[(int)(i)]);
-		}
-		delete(stringArrayReference.stringArray);
+		FreeStringReferenceArray(stringArrayReference.stringArray);
 		delete(stringArrayReference);
+	}
+
+	public static void FreeStringReferenceArray(StringReference [] stringReferencesArray){
+		double i;
+		for(i = 0d; i < stringReferencesArray.length; i = i + 1d){
+			delete(stringReferencesArray[(int)(i)]);
+		}
+		delete(stringReferencesArray);
+	}
+
+	public static double Increase(NumberReference nRef){
+		nRef.numberValue = nRef.numberValue + 1d;
+
+		return nRef.numberValue;
+	}
+
+	public static double Decrease(NumberReference nRef){
+		nRef.numberValue = nRef.numberValue - 1d;
+
+		return nRef.numberValue;
+	}
+
+	public static double AddToReference(NumberReference nRef, double n){
+		nRef.numberValue = nRef.numberValue + n;
+
+		return nRef.numberValue;
 	}
 
   public static void delete(Object object){

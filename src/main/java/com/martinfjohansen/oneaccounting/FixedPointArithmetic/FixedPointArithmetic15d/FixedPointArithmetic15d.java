@@ -1,15 +1,13 @@
 package com.martinfjohansen.oneaccounting.FixedPointArithmetic.FixedPointArithmetic15d;
 
-import static java.lang.Math.*;
-
 import com.martinfjohansen.oneaccounting.references.references.CharacterReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
 
 import static com.martinfjohansen.oneaccounting.math.math.math.*;
-
-import static com.martinfjohansen.oneaccounting.numbers.NumberToString.NumberToString.*;
-
-import static com.martinfjohansen.oneaccounting.strstrings.strings.strings.*;
+import static com.martinfjohansen.oneaccounting.numbers.NumberToString.NumberToString.CreateStringDecimalFromNumber;
+import static com.martinfjohansen.oneaccounting.numbers.NumberToString.NumberToString.GetSingleDigitCharacterFromNumberWithCheck;
+import static com.martinfjohansen.oneaccounting.strstrings.strings.strings.strAppendCharacter;
+import static com.martinfjohansen.oneaccounting.strstrings.strings.strings.strAppendString;
+import static java.lang.Math.*;
 
 public class FixedPointArithmetic15d{
 	public static FixedPoint15d CreateFixedPoint15d(double digitsBeforeDecimalPoint, double digitsAfterDecimalPoint){

@@ -9,30 +9,17 @@ import com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.Structures.L
 import com.martinfjohansen.oneaccounting.references.references.BooleanReference;
 import com.martinfjohansen.oneaccounting.references.references.NumberArrayReference;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
-import static com.martinfjohansen.oneaccounting.references.references.references.*;
 
-import com.martinfjohansen.oneaccounting.datetime.DateCalculations.*;
-import static com.martinfjohansen.oneaccounting.datetime.DateCalculations.DateCalculations.*;
-
-import com.martinfjohansen.oneaccounting.FixedPointArithmetic.FixedPointArithmetic15d.*;
-import static com.martinfjohansen.oneaccounting.FixedPointArithmetic.FixedPointArithmetic15d.FixedPointArithmetic15d.*;
-
-import static com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.LinkedListCharactersFunctions.LinkedListCharactersFunctions.*;
-
-import com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.Structures.*;
-
-import static com.martinfjohansen.oneaccounting.Accrual.Accrual.Accrual.*;
-
-import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.*;
-import static com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Structures.*;
-
+import static com.martinfjohansen.oneaccounting.Accrual.Accrual.Accrual.GetAccrualsWithDates;
 import static com.martinfjohansen.oneaccounting.DataStructures.Array.Arrays.Arrays.*;
-
-import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.*;
-
-import static com.martinfjohansen.oneaccounting.numbers.StringToNumber.StringToNumber.*;
-
+import static com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Structures.*;
+import static com.martinfjohansen.oneaccounting.FixedPointArithmetic.FixedPointArithmetic15d.FixedPointArithmetic15d.*;
+import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.arraysCopyString;
+import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.arraysStringsEqual;
+import static com.martinfjohansen.oneaccounting.datetime.DateCalculations.DateCalculations.*;
+import static com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.LinkedListCharactersFunctions.LinkedListCharactersFunctions.*;
+import static com.martinfjohansen.oneaccounting.numbers.StringToNumber.StringToNumber.CreateNumberFromDecimalString;
+import static com.martinfjohansen.oneaccounting.references.references.references.CreateBooleanReference;
 import static com.martinfjohansen.oneaccounting.strstrings.strings.strings.*;
 
 
@@ -352,9 +339,12 @@ public class Accounting{
 		char [] accountName, desc;
 		double [] amounts;
 		Line [] transaction;
-		boolean valid;
+		boolean valid, success;
 		Date date;
 		FixedPoint15d c, d;
+		StringReference message;
+
+		message = new StringReference();
 
 		amounts = GetAccrualsWithDates(amount, from, to);
 
@@ -381,7 +371,7 @@ public class Accounting{
 
 			valid = ValidateAndAddTransactionToLedger(ledger, transaction);
 
-			AddMonthsToDate(date, 1d);
+			success = AddMonthsToDate(date, 1d, message);
 		}
 	}
 
@@ -582,7 +572,7 @@ public class Accounting{
 		AccountPlan ap;
 		double i;
 		char [] line;
-		StringReference[] lines, parts;
+		StringReference [] lines, parts;
 		AccountDefinition ad;
 
 		ap = new AccountPlan();

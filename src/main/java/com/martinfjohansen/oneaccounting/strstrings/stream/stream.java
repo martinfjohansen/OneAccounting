@@ -1,7 +1,6 @@
 package com.martinfjohansen.oneaccounting.strstrings.stream;
 
 import com.martinfjohansen.oneaccounting.references.references.NumberReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
 
 public class stream{
 	public static void strWriteStringToStingStream(char [] stream, NumberReference index, char [] src){

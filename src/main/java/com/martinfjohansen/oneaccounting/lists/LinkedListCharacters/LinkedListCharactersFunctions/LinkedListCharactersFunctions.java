@@ -1,9 +1,7 @@
 package com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.LinkedListCharactersFunctions;
 
-
 import com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.Structures.LinkedListCharacters;
 import com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.Structures.LinkedListNodeCharacters;
-import com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.Structures.*;
 
 public class LinkedListCharactersFunctions{
 	public static LinkedListCharacters CreateLinkedListCharacter(){

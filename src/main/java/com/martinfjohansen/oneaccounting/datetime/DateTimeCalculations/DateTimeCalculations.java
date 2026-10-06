@@ -1,17 +1,12 @@
 package com.martinfjohansen.oneaccounting.datetime.DateTimeCalculations;
 
-import static java.lang.Math.*;
-
 import com.martinfjohansen.oneaccounting.datetime.DateCalculations.Date;
 import com.martinfjohansen.oneaccounting.datetime.DateCalculations.DateReference;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
 
 import static com.martinfjohansen.oneaccounting.cCharacters.Characters.Characters.*;
-
-
-import com.martinfjohansen.oneaccounting.datetime.DateCalculations.*;
 import static com.martinfjohansen.oneaccounting.datetime.DateCalculations.DateCalculations.*;
+import static java.lang.Math.floor;
 
 public class DateTimeCalculations{
 	public static DateTime CreateDateTime(double year, double month, double day, double hours, double minutes, double seconds){

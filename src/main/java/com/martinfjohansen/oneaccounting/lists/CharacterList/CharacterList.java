@@ -1,7 +1,6 @@
 package com.martinfjohansen.oneaccounting.lists.CharacterList;
 
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
 
 public class CharacterList{
 	public static char [] AddCharacter(char [] list, char a){

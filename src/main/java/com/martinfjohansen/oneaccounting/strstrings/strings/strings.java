@@ -1,34 +1,20 @@
 package com.martinfjohansen.oneaccounting.strstrings.strings;
 
-import static java.lang.Math.*;
-
 import com.martinfjohansen.oneaccounting.lists.DynamicArrayCharacters.Structures.DynamicArrayCharacters;
 import com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.Structures.LinkedListCharacters;
 import com.martinfjohansen.oneaccounting.lists.LinkedListStrings.Structures.LinkedListStrings;
 import com.martinfjohansen.oneaccounting.references.references.BooleanReference;
 import com.martinfjohansen.oneaccounting.references.references.NumberReference;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
-import com.martinfjohansen.oneaccounting.lists.DynamicArrayCharacters.Structures.*;
 
-import static com.martinfjohansen.oneaccounting.lists.DynamicArrayCharacters.DynamicArrayCharactersFunctions.DynamicArrayCharactersFunctions.*;
-
-import com.martinfjohansen.oneaccounting.lists.LinkedListStrings.Structures.*;
-
-import static com.martinfjohansen.oneaccounting.lists.LinkedListStrings.LinkedListStringsFunctions.LinkedListStringsFunctions.*;
-
-import static com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.LinkedListCharactersFunctions.LinkedListCharactersFunctions.*;
-
-import com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.Structures.*;
-
-import com.martinfjohansen.oneaccounting.references.references.*;
-import static com.martinfjohansen.oneaccounting.references.references.references.*;
-
+import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.arraysFillString;
 import static com.martinfjohansen.oneaccounting.cCharacters.Characters.Characters.*;
-
-import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.*;
-
-
-import static com.martinfjohansen.oneaccounting.strstrings.stream.stream.*;
+import static com.martinfjohansen.oneaccounting.lists.DynamicArrayCharacters.DynamicArrayCharactersFunctions.DynamicArrayCharactersFunctions.*;
+import static com.martinfjohansen.oneaccounting.lists.LinkedListCharacters.LinkedListCharactersFunctions.LinkedListCharactersFunctions.*;
+import static com.martinfjohansen.oneaccounting.lists.LinkedListStrings.LinkedListStringsFunctions.LinkedListStringsFunctions.*;
+import static com.martinfjohansen.oneaccounting.references.references.references.CreateNumberReference;
+import static com.martinfjohansen.oneaccounting.strstrings.stream.stream.strWriteStringToStingStream;
+import static java.lang.Math.min;
 
 public class strings{
 	public static boolean strSubstringWithCheck(char [] string, double from, double to, StringReference stringReference){
@@ -390,6 +376,53 @@ public class strings{
 		}
 
 		return endsWithString;
+	}
+
+	public static StringReference [] strSplitByWhitespace(char [] toSplit){
+		StringReference [] parts;
+		double i, skip;
+		char c;
+		LinkedListStrings ll;
+		LinkedListCharacters next;
+		char [] part;
+		boolean split;
+
+		ll = CreateLinkedListString();
+
+		next = CreateLinkedListCharacter();
+		for(i = 0d; i < toSplit.length; ){
+			c = toSplit[(int)(i)];
+
+			split = false;
+			skip = 0d;
+			for(; (c == ' ' || c == '\n' || c == '\t') && i + skip <= toSplit.length; ){
+				if(i + skip != toSplit.length){
+					c = toSplit[(int)(i + skip)];
+				}
+				skip = skip + 1d;
+				split = true;
+			}
+
+			if(split){
+				part = LinkedListCharactersToArray(next);
+				LinkedListAddString(ll, part);
+				FreeLinkedListCharacter(next);
+				next = CreateLinkedListCharacter();
+				i = i + skip - 1d;
+			}else{
+				LinkedListAddCharacter(next, c);
+				i = i + 1d;
+			}
+		}
+
+		part = LinkedListCharactersToArray(next);
+		LinkedListAddString(ll, part);
+		FreeLinkedListCharacter(next);
+
+		parts = LinkedListStringsToArray(ll);
+		FreeLinkedListString(ll);
+
+		return parts;
 	}
 
 	public static StringReference [] strSplitByString(char [] toSplit, char [] splitBy){

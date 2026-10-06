@@ -2,7 +2,6 @@ package com.martinfjohansen.oneaccounting.lists.StringList;
 
 import com.martinfjohansen.oneaccounting.references.references.StringArrayReference;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
 
 public class StringList{
 	public static StringReference[] AddString(StringReference [] list, StringReference a){

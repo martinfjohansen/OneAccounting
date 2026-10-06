@@ -1,9 +1,7 @@
 package com.martinfjohansen.oneaccounting.lists.LinkedListNumbers.LinkedListNumbersFunctions;
 
-
 import com.martinfjohansen.oneaccounting.lists.LinkedListNumbers.Structures.LinkedListNodeNumbers;
 import com.martinfjohansen.oneaccounting.lists.LinkedListNumbers.Structures.LinkedListNumbers;
-import com.martinfjohansen.oneaccounting.lists.LinkedListNumbers.Structures.*;
 
 public class LinkedListNumbersFunctions{
 	public static LinkedListNumbers CreateLinkedListNumbers(){

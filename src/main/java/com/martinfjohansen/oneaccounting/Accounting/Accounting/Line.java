@@ -2,9 +2,6 @@ package com.martinfjohansen.oneaccounting.Accounting.Accounting;
 
 import com.martinfjohansen.oneaccounting.FixedPointArithmetic.FixedPointArithmetic15d.FixedPoint15d;
 import com.martinfjohansen.oneaccounting.datetime.DateCalculations.Date;
-import com.martinfjohansen.oneaccounting.datetime.DateCalculations.*;
-
-import com.martinfjohansen.oneaccounting.FixedPointArithmetic.FixedPointArithmetic15d.*;
 
 
 public class Line{

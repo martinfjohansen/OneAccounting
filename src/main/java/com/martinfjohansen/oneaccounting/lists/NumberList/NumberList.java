@@ -1,7 +1,6 @@
 package com.martinfjohansen.oneaccounting.lists.NumberList;
 
 import com.martinfjohansen.oneaccounting.references.references.NumberArrayReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
 
 public class NumberList{
 	public static double [] AddNumber(double [] list, double a){

@@ -2,12 +2,10 @@ package com.martinfjohansen.oneaccounting.DataStructures.Array.Structures;
 
 import com.martinfjohansen.oneaccounting.references.references.BooleanReference;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
-
-import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.*;
-
 
 import static com.martinfjohansen.oneaccounting.DataStructures.Array.Arrays.Arrays.*;
+import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.arraysCopyString;
+import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.arraysStringsEqual;
 
 public class Structures{
 	public static Data CreateNewArrayData(){

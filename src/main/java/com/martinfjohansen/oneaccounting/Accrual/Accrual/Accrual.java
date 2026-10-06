@@ -4,19 +4,11 @@ import com.martinfjohansen.oneaccounting.FixedPointArithmetic.FixedPointArithmet
 import com.martinfjohansen.oneaccounting.datetime.DateCalculations.Date;
 import com.martinfjohansen.oneaccounting.lists.LinkedListNumbers.Structures.LinkedListNumbers;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
 
-import com.martinfjohansen.oneaccounting.datetime.DateCalculations.*;
-import static com.martinfjohansen.oneaccounting.datetime.DateCalculations.DateCalculations.*;
-
-import com.martinfjohansen.oneaccounting.FixedPointArithmetic.FixedPointArithmetic15d.*;
 import static com.martinfjohansen.oneaccounting.FixedPointArithmetic.FixedPointArithmetic15d.FixedPointArithmetic15d.*;
-
-import static com.martinfjohansen.oneaccounting.math.math.math.*;
-
-import com.martinfjohansen.oneaccounting.lists.LinkedListNumbers.Structures.*;
-
+import static com.martinfjohansen.oneaccounting.datetime.DateCalculations.DateCalculations.*;
 import static com.martinfjohansen.oneaccounting.lists.LinkedListNumbers.LinkedListNumbersFunctions.LinkedListNumbersFunctions.*;
+import static com.martinfjohansen.oneaccounting.math.math.math.Round;
 
 
 public class Accrual{
@@ -46,12 +38,14 @@ public class Accrual{
 
 	public static double [] GetAccrualsWithDates(double total, Date from, Date to){
 		double entry;
-		boolean done;
+		boolean done, success;
 		Date dateOfInterest;
 		LinkedListNumbers list;
 		double [] result;
+		StringReference message;
 
 		list = CreateLinkedListNumbers();
+		message = new StringReference();
 
 		done = false;
 		dateOfInterest = new Date();
@@ -63,7 +57,7 @@ public class Accrual{
 
 			entry = GetAccrualAmountWithDates(total, from, to, dateOfInterest.year, dateOfInterest.month);
 			LinkedListAddNumber(list, entry);
-			AddMonthsToDate(dateOfInterest, 1d);
+			success = AddMonthsToDate(dateOfInterest, 1d, message);
 		}
 
 		result = LinkedListNumbersToArray(list);

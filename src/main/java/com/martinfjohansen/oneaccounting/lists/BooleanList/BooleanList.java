@@ -1,7 +1,6 @@
 package com.martinfjohansen.oneaccounting.lists.BooleanList;
 
 import com.martinfjohansen.oneaccounting.references.references.BooleanArrayReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
 
 public class BooleanList{
 	public static boolean [] AddBoolean(boolean [] list, boolean a){

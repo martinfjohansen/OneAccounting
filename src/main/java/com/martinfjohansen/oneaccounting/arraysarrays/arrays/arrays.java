@@ -1,10 +1,9 @@
 package com.martinfjohansen.oneaccounting.arraysarrays.arrays;
 
-import com.martinfjohansen.oneaccounting.references.references.BooleanArrayReference;
-import com.martinfjohansen.oneaccounting.references.references.NumberArrayReference;
-import com.martinfjohansen.oneaccounting.references.references.StringArrayReference;
-import com.martinfjohansen.oneaccounting.references.references.StringReference;
 import com.martinfjohansen.oneaccounting.references.references.*;
+
+import static java.lang.Math.max;
+import static java.lang.Math.min;
 
 
 public class arrays{
@@ -322,6 +321,165 @@ public class arrays{
 		for(i = 0d; i < array.length/2d; i = i + 1d){
 			arraysSwapElementsOfNumberArray(array, i, array.length - i - 1d);
 		}
+	}
+
+	public static boolean arraysNumberArrayContains(double [] a, double e){
+		boolean found;
+		double i;
+
+		found = false;
+
+		for(i = 0d; i < a.length && !found; i = i + 1d){
+			if(arraysIndexNumber(a, i) == e){
+				found = true;
+			}
+		}
+
+		return found;
+	}
+
+	public static double arraysIndexNumber(double [] array, double index){
+		return array[(int)(index)];
+	}
+
+	public static char arraysIndexChar(char [] array, double index){
+		return array[(int)(index)];
+	}
+
+	public static boolean arraysIndexBoolean(boolean [] array, double index){
+		return array[(int)(index)];
+	}
+
+	public static char [] arraysIndexString(StringReference [] array, double index){
+		return array[(int)(index)].string;
+	}
+
+	public static boolean arraysGetMinimum(double [] data, NumberReference minimumReference){
+		double i, minimum;
+		boolean success;
+
+		if(data.length >= 1d){
+			minimum = data[0];
+			for(i = 0d; i < data.length; i = i + 1d){
+				minimum = min(minimum, data[(int)(i)]);
+			}
+			minimumReference.numberValue = minimum;
+			success = true;
+		}else{
+			success = false;
+		}
+
+		return success;
+	}
+
+	public static boolean arraysGetMaximum(double [] data, NumberReference maximumReference){
+		double i, maximum;
+		boolean success;
+
+		if(data.length >= 1d){
+			maximum = data[0];
+			for(i = 0d; i < data.length; i = i + 1d){
+				maximum = max(maximum, data[(int)(i)]);
+			}
+			maximumReference.numberValue = maximum;
+			success = true;
+		}else{
+			success = false;
+		}
+
+		return success;
+	}
+
+	public static void arraysAssignNumberArray(double [] as, double [] bs){
+		double i;
+
+		for(i = 0d; i < min(as.length, bs.length); i = i + 1d){
+			as[(int)(i)] = bs[(int)(i)];
+		}
+	}
+
+	public static void arraysAssignBooleanArray(boolean [] as, boolean [] bs){
+		double i;
+
+		for(i = 0d; i < min(as.length, bs.length); i = i + 1d){
+			as[(int)(i)] = bs[(int)(i)];
+		}
+	}
+
+	public static void arraysAssignString(char [] as, char [] bs){
+		double i;
+
+		for(i = 0d; i < min(as.length, bs.length); i = i + 1d){
+			as[(int)(i)] = bs[(int)(i)];
+		}
+	}
+
+	public static void arraysRearrangeArray(double [] as, double [] indexes){
+		double [] bs;
+		double i;
+
+		bs = new double [(int)(as.length)];
+
+		arraysAssignNumberArray(bs, as);
+
+		for(i = 0d; i < indexes.length; i = i + 1d){
+			as[(int)(i)] = bs[(int)(indexes[(int)(i)])];
+		}
+
+		delete(bs);
+	}
+
+	public static void arraysSetNumberArrayRange(double [] data, double offset, double [] str){
+		double i;
+
+		for(i = 0d; i < str.length && offset + i < data.length; i = i + 1d){
+			data[(int)(offset + i)] = str[(int)(i)];
+		}
+	}
+
+	public static boolean arraysCopyNumberArrayValues(double [] a, double [] b){
+		boolean success;
+		double i;
+
+		success = a.length == b.length;
+
+		if(success){
+			for(i = 0d; i < a.length; i = i + 1d){
+				a[(int)(i)] = b[(int)(i)];
+			}
+		}
+
+		return success;
+	}
+
+	public static boolean arraysCopyBooleanArrayValues(boolean [] a, boolean [] b){
+		boolean success;
+		double i;
+
+		success = a.length == b.length;
+
+		if(success){
+			for(i = 0d; i < a.length; i = i + 1d){
+				a[(int)(i)] = b[(int)(i)];
+			}
+		}
+
+		return success;
+	}
+
+	public static boolean arraysCopyStringValues(char [] a, char [] b){
+		boolean success;
+		double i;
+
+		success = a.length == b.length;
+
+		if(success){
+			for(i = 0d; i < a.length; i = i + 1d){
+				a[(int)(i)] = b[(int)(i)];
+			}
+		}
+
+		return success;
 	}
 
   public static void delete(Object object){

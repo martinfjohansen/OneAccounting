@@ -3,10 +3,6 @@ package com.martinfjohansen.oneaccounting.lists.LinkedListStrings.LinkedListStri
 import com.martinfjohansen.oneaccounting.lists.LinkedListStrings.Structures.LinkedListNodeStrings;
 import com.martinfjohansen.oneaccounting.lists.LinkedListStrings.Structures.LinkedListStrings;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
-
-
-import com.martinfjohansen.oneaccounting.lists.LinkedListStrings.Structures.*;
 
 public class LinkedListStringsFunctions{
 	public static LinkedListStrings CreateLinkedListString(){

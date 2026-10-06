@@ -1,9 +1,8 @@
 package com.martinfjohansen.oneaccounting.math.math;
 
-import static java.lang.Math.*;
-
 import com.martinfjohansen.oneaccounting.references.references.NumberReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
+
+import static java.lang.Math.*;
 
 public class math{
 	public static double Negate(double x){

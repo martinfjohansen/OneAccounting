@@ -2,12 +2,9 @@ package com.martinfjohansen.oneaccounting.numbers.NumberComputations;
 
 import com.martinfjohansen.oneaccounting.references.references.NumberReference;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
 
-import static com.martinfjohansen.oneaccounting.math.math.math.*;
-
-
-import static com.martinfjohansen.oneaccounting.numbers.StringToNumber.StringToNumber.*;
+import static com.martinfjohansen.oneaccounting.math.math.math.IsInteger;
+import static com.martinfjohansen.oneaccounting.numbers.StringToNumber.StringToNumber.CreateNumberFromDecimalStringWithCheck;
 
 public class NumberComputations{
 	public static boolean IsValidNumber(char [] str){

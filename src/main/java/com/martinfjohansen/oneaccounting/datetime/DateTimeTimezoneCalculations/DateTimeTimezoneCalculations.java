@@ -3,10 +3,7 @@ package com.martinfjohansen.oneaccounting.datetime.DateTimeTimezoneCalculations;
 import com.martinfjohansen.oneaccounting.datetime.DateTimeCalculations.DateTime;
 import com.martinfjohansen.oneaccounting.datetime.DateTimeCalculations.DateTimeReference;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
-import com.martinfjohansen.oneaccounting.references.references.*;
 
-
-import com.martinfjohansen.oneaccounting.datetime.DateTimeCalculations.*;
 import static com.martinfjohansen.oneaccounting.datetime.DateTimeCalculations.DateTimeCalculations.*;
 
 public class DateTimeTimezoneCalculations{
