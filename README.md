@@ -36,6 +36,9 @@ The library is available in the following languages. More can be added, create a
 
 Planned future additions to the library.
 
+ - EHF export and import.
+ - SAF-T export and import.
+ - SIE export and import.
  - Profit and Loss / Income Statement
  - Basic Cash Flow (direct or indirect)
  - Currency formatters and multi-currency support
