@@ -1,30 +1,26 @@
 package com.martinfjohansen.oneaccounting;
 
-import Bytes.Bytes.ByteArray;
 import Bytes.Bytes.ByteArrayReference;
 import Disk.Disk.DiskStructure;
-import Disk.DiskServer.DiskServerStructure;
-import ProcessingUnit.ProcessingUnitServer.ProcessingUnitServer;
 import ProcessingUnit.ProcessingUnitServer.ProcessingUnitServerStructure;
 import ProcessingUnitController.ProcessingUnitController.ProcessingUnitControllerStructure;
 import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Data;
-import com.martinfjohansen.oneaccounting.references.references.NumberArrayReference;
+import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.DataReference;
 import com.martinfjohansen.oneaccounting.references.references.NumberReference;
+import com.martinfjohansen.oneaccounting.references.references.StringReference;
 
 import static Disk.Disk.Disk.*;
 import static Disk.Disk.Disk.Entries;
-import static Disk.DiskServer.DiskServer.*;
+import static JSON.Parser.Parser.ReadJSON;
 import static JSON.Writer.Writer.WriteJSON;
 import static ProcessingUnit.ProcessingUnitServer.ProcessingUnitServer.*;
 import static ProcessingUnitController.ProcessingUnitController.ProcessingUnitController.CreateJavaPUC;
 import static ProcessingUnitController.ProcessingUnitController.ProcessingUnitController.WaitInterrupt;
 import static Unicode.Unicode.Unicode.UTF16ToUTF8;
+import static Unicode.Unicode.Unicode.UTF8ToUTF16;
+import static com.martinfjohansen.oneaccounting.CommandHandler.HandleCommand;
 import static com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Structures.*;
-import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.arraysCopyNumberArrayValues;
-import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.arraysFillNumberArray;
-import static com.martinfjohansen.oneaccounting.math.math.math.IsInteger;
 import static com.martinfjohansen.oneaccounting.references.references.references.*;
-import static java.lang.Math.min;
 
 public class TestModule {
     public static void main(String[] args) {
@@ -33,7 +29,7 @@ public class TestModule {
         ProcessingUnitControllerStructure puc = CreateJavaPUC();
         ProcessingUnitServerStructure client = CreateHTTPServer(puc,"127.0.0.1", 8081);
         DiskStructure disk = new DiskStructure();
-        CreateFileDisk(disk, "disk.dat", 1024, 1024);
+        CreateFileDisk(disk, "disk.dat", 100 * 1024, 1024);
         OneAccountingState state = new OneAccountingState();
 
         OneAccountingInitialize(puc, client, disk, state);
@@ -63,43 +59,64 @@ public class TestModule {
     }
 
     public static void OneAccountingIteration(ProcessingUnitControllerStructure puc, ProcessingUnitServerStructure clientPort, DiskStructure disk, OneAccountingState state) {
-        boolean success, apRequestAvailable, vdRequestAvailable;
-        ByteArrayReference adminPortOutputBytes;
-        NumberReference entryRef, entriesRef, entrySizeRef;
-        char [] adminPortOutputJSON;
-        ByteArrayReference adminPortRequestBytes, data;
-        Data adminPortOutput;
+        boolean success, requestAvailable;
+        ByteArrayReference outputBytes;
+        char [] outputJSON;
+        ByteArrayReference requestBytesRef;
+        Data output;
+        DataReference outputDataRef;
+        StringReference inputJsonRef, message;
+        DataReference input;
 
-        entriesRef = new NumberReference();
-        entryRef = new NumberReference();
-        entrySizeRef = new NumberReference();
-        data = new ByteArrayReference();
+        message = CreateStringReference("".toCharArray());
+        outputBytes = new ByteArrayReference();
+        outputDataRef = new DataReference();
+        outputDataRef.data = CreateNewStructData();
 
         WaitInterrupt(puc, 10d);
 
-        apRequestAvailable = ServerCheck(clientPort);
+        requestAvailable = ServerCheck(clientPort);
 
-        if(apRequestAvailable){
-            adminPortRequestBytes = new ByteArrayReference();
-            ServerReceive(clientPort, adminPortRequestBytes);
+        if(requestAvailable){
+            requestBytesRef = new ByteArrayReference();
+            ServerReceive(clientPort, requestBytesRef);
 
-            adminPortOutput = CreateNewStructData();
-            AddNumberToStruct(adminPortOutput.structure, "Entry Size".toCharArray(), state.entrySize);
-            AddNumberToStruct(adminPortOutput.structure, "Entries".toCharArray(), state.entries);
-            AddNumberToStruct(adminPortOutput.structure, "Idle".toCharArray(), state.idles);
+            inputJsonRef = new StringReference();
+            success = UTF8ToUTF16(requestBytesRef.bytes, inputJsonRef);
 
-            adminPortOutputJSON = WriteJSON(adminPortOutput);
+            if(success) {
 
-            FreeData(adminPortOutput);
+                input = new DataReference();
+                success = ReadJSON(inputJsonRef.string, input, message);
 
-            adminPortOutputBytes = new ByteArrayReference();
+                if(success) {
+                    success = HandleCommand(disk, input.data, outputDataRef, message);
+                }
+            }
 
-            success = UTF16ToUTF8(adminPortOutputJSON, adminPortOutputBytes);
+            if(success){
+                output = CreateNewStructData();
+                AddBooleanToStruct(output.structure, "success".toCharArray(), success);
+                AddStringToStruct(output.structure, "message".toCharArray(), message.string);
+                AddDataToStruct(output.structure, "data".toCharArray(), outputDataRef.data);
+                outputJSON = WriteJSON(output);
+                success = UTF16ToUTF8(outputJSON, outputBytes);
+            }
 
-            ServerSend(clientPort, adminPortOutputBytes.bytes);
+            if(success){
+
+            }else{
+                output = CreateNewStructData();
+                AddBooleanToStruct(output.structure, "success".toCharArray(), success);
+                AddStringToStruct(output.structure, "message".toCharArray(), message.string);
+                outputJSON = WriteJSON(output);
+                UTF16ToUTF8(outputJSON, outputBytes);
+            }
+
+            ServerSend(clientPort, outputBytes.bytes);
         }
 
-        if(!apRequestAvailable){
+        if(!requestAvailable){
             state.idles = state.idles + 1d;
         }
     }
