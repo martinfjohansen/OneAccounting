@@ -30,8 +30,8 @@ public class TestModule {
     public static void main(String[] args) {
         System.out.println("One Accounting Library");
 
-        ProcessingUnitServerStructure client = CreateHTTPServer("127.0.0.1", 8081);
         ProcessingUnitControllerStructure puc = CreateJavaPUC();
+        ProcessingUnitServerStructure client = CreateHTTPServer(puc,"127.0.0.1", 8081);
         DiskStructure disk = new DiskStructure();
         CreateFileDisk(disk, "disk.dat", 1024, 1024);
         OneAccountingState state = new OneAccountingState();

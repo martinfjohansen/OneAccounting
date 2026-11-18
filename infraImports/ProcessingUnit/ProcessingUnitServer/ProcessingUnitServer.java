@@ -2,6 +2,7 @@ package ProcessingUnit.ProcessingUnitServer;
 
 import Bytes.Bytes.ByteArray;
 import Bytes.Bytes.ByteArrayReference;
+import ProcessingUnitController.ProcessingUnitController.ProcessingUnitControllerStructure;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
@@ -54,13 +55,14 @@ public class ProcessingUnitServer {
         pu.server.stop(0);
     }
 
-    public static ProcessingUnitServerStructure CreateHTTPServer(String ip, int port) {
+    public static ProcessingUnitServerStructure CreateHTTPServer(ProcessingUnitControllerStructure puc, String ip, int port) {
         ProcessingUnitServerStructure pu = new ProcessingUnitServerStructure();
 
         try {
             pu.receiveReady = new Semaphore(0);
             pu.sendReady = new Semaphore(0);
             pu.processing = new Semaphore(1);
+            pu.puc = puc;
 
             pu.server = HttpServer.create(new InetSocketAddress(ip, port), 0);
             pu.server.createContext("/", new MyHandler(pu));
@@ -101,6 +103,7 @@ public class ProcessingUnitServer {
                     pu.input = b;
 
                     pu.receiveReady.release();
+                    pu.puc.puMessageReady.release();
 
                     pu.sendReady.acquire();
 
