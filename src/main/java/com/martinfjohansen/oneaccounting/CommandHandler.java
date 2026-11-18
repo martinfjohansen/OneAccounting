@@ -3,13 +3,15 @@ package com.martinfjohansen.oneaccounting;
 import Disk.Disk.DiskStructure;
 import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Data;
 import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.DataReference;
+import com.martinfjohansen.oneaccounting.diskops.DiskOperations;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
 
 import static com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Structures.*;
 import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.arraysStringsEqual;
+import static com.martinfjohansen.oneaccounting.diskops.DiskOperations.*;
 
 public class CommandHandler {
-    public static boolean HandleCommand(DiskStructure disk, Data input, DataReference outputDataRef, StringReference message) {
+    public static boolean HandleCommand(DiskStructure disk, Data input, OneAccountingState state, DataReference outputDataRef, StringReference message) {
         boolean success;
         char [] command;
         Data commandData;
@@ -27,6 +29,14 @@ public class CommandHandler {
 
                     if(arraysStringsEqual(command, "Ping".toCharArray())){
                         outputDataRef.data = CreateStringData("Pong".toCharArray());
+                    }else if(arraysStringsEqual(command, "FormatDisk".toCharArray())){
+                        success = FormatDisk(disk, state, message);
+                    }else if(arraysStringsEqual(command, "LoadFromDisk".toCharArray())){
+                        success = LoadFromDisk(disk, state, message);
+                    }else if(arraysStringsEqual(command, "SaveToDisk".toCharArray())){
+                        success = SaveToDisk(disk, state, message);
+                    }else if(arraysStringsEqual(command, "IsValidDiskFormat".toCharArray())){
+                        success = IsValidDiskFormat(disk, message);
                     }else{
                         success = false;
                         message.string = "Unknown command.".toCharArray();
@@ -44,4 +54,6 @@ public class CommandHandler {
 
         return success;
     }
+
+
 }

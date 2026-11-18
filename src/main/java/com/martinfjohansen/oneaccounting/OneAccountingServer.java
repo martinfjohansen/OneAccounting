@@ -22,9 +22,11 @@ import static com.martinfjohansen.oneaccounting.CommandHandler.HandleCommand;
 import static com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Structures.*;
 import static com.martinfjohansen.oneaccounting.references.references.references.*;
 
-public class TestModule {
+public class OneAccountingServer {
     public static void main(String[] args) {
-        System.out.println("One Accounting Library");
+        boolean success;
+
+        System.out.println("One Accounting Server");
 
         ProcessingUnitControllerStructure puc = CreateJavaPUC();
         ProcessingUnitServerStructure client = CreateHTTPServer(puc,"127.0.0.1", 8081);
@@ -32,7 +34,11 @@ public class TestModule {
         CreateFileDisk(disk, "disk.dat", 100 * 1024, 1024);
         OneAccountingState state = new OneAccountingState();
 
-        OneAccountingInitialize(puc, client, disk, state);
+        success = OneAccountingInitialize(puc, client, disk, state);
+
+        if(success){
+            System.out.println("Ready to accept commands");
+        }
 
         for(;;){
             OneAccountingIteration(puc, client, disk, state);
@@ -90,7 +96,7 @@ public class TestModule {
                 success = ReadJSON(inputJsonRef.string, input, message);
 
                 if(success) {
-                    success = HandleCommand(disk, input.data, outputDataRef, message);
+                    success = HandleCommand(disk, input.data, state, outputDataRef, message);
                 }
             }
 
