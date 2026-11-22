@@ -1,9 +1,8 @@
-package com.martinfjohansen.oneaccounting.diskops;
+package com.martinfjohansen.oneaccounting.accountingops;
 
 import Bytes.Bytes.ByteArray;
 import Bytes.Bytes.ByteArrayReference;
 import Disk.Disk.DiskStructure;
-import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Data;
 import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.DataReference;
 import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Structure;
 import com.martinfjohansen.oneaccounting.OneAccountingState;

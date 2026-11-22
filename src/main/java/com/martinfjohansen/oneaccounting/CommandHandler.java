@@ -3,12 +3,12 @@ package com.martinfjohansen.oneaccounting;
 import Disk.Disk.DiskStructure;
 import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Data;
 import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.DataReference;
-import com.martinfjohansen.oneaccounting.diskops.DiskOperations;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
 
 import static com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Structures.*;
+import static com.martinfjohansen.oneaccounting.accountingops.LedgerOperations.AddTransactionToLedger;
 import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.arraysStringsEqual;
-import static com.martinfjohansen.oneaccounting.diskops.DiskOperations.*;
+import static com.martinfjohansen.oneaccounting.accountingops.DiskOperations.*;
 
 public class CommandHandler {
     public static boolean HandleCommand(DiskStructure disk, Data input, OneAccountingState state, DataReference outputDataRef, StringReference message) {
@@ -37,7 +37,8 @@ public class CommandHandler {
                         success = SaveToDisk(disk, state, message);
                     }else if(arraysStringsEqual(command, "IsValidDiskFormat".toCharArray())){
                         success = IsValidDiskFormat(disk, message);
-                        
+                    }else if(arraysStringsEqual(command, "AddTransactionToLedger".toCharArray())){
+                        success = AddTransactionToLedger(disk, state, message);
                     }else{
                         success = false;
                         message.string = "Unknown command.".toCharArray();

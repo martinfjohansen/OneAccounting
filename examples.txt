@@ -5,5 +5,7 @@ curl -s 127.0.0.1:8081 --data '{"command": "FormatDisk"}' | pbjson
 curl -s 127.0.0.1:8081 --data '{"command": "IsValidDiskFormat"}' | pbjson
 curl -s 127.0.0.1:8081 --data '{"command": "LoadFromDisk"}' | pbjson
 curl -s 127.0.0.1:8081 --data '{"command": "SaveToDisk"}' | pbjson
+curl -s 127.0.0.1:8081 --data '{"command": "AddTransactionToLedger"}' | pbjson
+
 
 
