@@ -37,6 +37,7 @@ public class CommandHandler {
                         success = SaveToDisk(disk, state, message);
                     }else if(arraysStringsEqual(command, "IsValidDiskFormat".toCharArray())){
                         success = IsValidDiskFormat(disk, message);
+                        
                     }else{
                         success = false;
                         message.string = "Unknown command.".toCharArray();
