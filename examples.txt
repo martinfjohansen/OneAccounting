@@ -14,10 +14,6 @@ curl -s 127.0.0.1:8081 --data '{
         {"account": "3.4.2", "type": "Credit", "amount": 125}
     ]
     }' | pbjson
-
-
-
-
 curl -s 127.0.0.1:8081 --data '{
     "command": "AddTransactionToLedger",
     "date": "2026-11-22",
@@ -27,3 +23,11 @@ curl -s 127.0.0.1:8081 --data '{
         {"account": "3.4.2", "type": "Credit", "amount": 1}
     ]
     }' | pbjson
+curl -s 127.0.0.1:8081 --data '{"command": "ComputeAccountBalance", "account": "1.8.1", "from": "2026-11-22", "to": "2026-11-22"}' | pbjson
+#curl -s 127.0.0.1:8081 --data '{"command": "ComputeAccountBalancePrefixAccount", "account": "1.8.1", "from": "2026-11-22", "to": "2026-11-22"}' | pbjson
+
+
+curl -s 127.0.0.1:8081 --data '{"command": "AddMonthlyAccruals"}' | pbjson
+curl -s 127.0.0.1:8081 --data '{"command": "ComputeAccountBalances"}' | pbjson
+
+

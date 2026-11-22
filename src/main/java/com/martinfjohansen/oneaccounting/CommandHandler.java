@@ -3,10 +3,11 @@ package com.martinfjohansen.oneaccounting;
 import Disk.Disk.DiskStructure;
 import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Data;
 import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.DataReference;
+import com.martinfjohansen.oneaccounting.accountingops.LedgerOperations;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
 
 import static com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Structures.*;
-import static com.martinfjohansen.oneaccounting.accountingops.LedgerOperations.AddTransactionToLedger;
+import static com.martinfjohansen.oneaccounting.accountingops.LedgerOperations.*;
 import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.arraysStringsEqual;
 import static com.martinfjohansen.oneaccounting.accountingops.DiskOperations.*;
 
@@ -39,6 +40,14 @@ public class CommandHandler {
                         success = IsValidDiskFormat(disk, message);
                     }else if(arraysStringsEqual(command, "AddTransactionToLedger".toCharArray())){
                         success = AddTransactionToLedger(input.structure, state, message);
+                    }else if(arraysStringsEqual(command, "ComputeAccountBalance".toCharArray())){
+                        success = ComputeAccountBalance(input.structure, outputDataRef, state, message);
+                    }else if(arraysStringsEqual(command, "ComputeAccountBalancePrefixAccount".toCharArray())){
+                        success = ComputeAccountBalancePrefixAccount(input.structure, outputDataRef, state, message);
+                    }else if(arraysStringsEqual(command, "AddMonthlyAccruals".toCharArray())){
+                        success = AddMonthlyAccruals(input.structure, outputDataRef, state, message);
+                    }else if(arraysStringsEqual(command, "ComputeAccountBalances".toCharArray())){
+                        success = ComputeAccountBalances(input.structure, outputDataRef, state, message);
                     }else{
                         success = false;
                         message.string = "Unknown command.".toCharArray();
