@@ -21,21 +21,23 @@ public class LedgerOperations {
         boolean success;
         Transaction t;
         FixedPoint15d d, c;
-        char [] dateStr, type, account;
+        char [] dateStr, type, account, description;
         Structure line;
         double i, amount, lineCount;
+        Date date;
+        Array lines;
 
         dateStr = GetStringFromStruct(input, "date".toCharArray());
-        Date date = DateFromStringISO8601(dateStr);
+        date = DateFromStringISO8601(dateStr);
 
         t = new Transaction();
 
-        char [] description = GetStringFromStruct(input, "description".toCharArray());
+        description = GetStringFromStruct(input, "description".toCharArray());
 
         c = CreateFixedPointForDynamicLedger(state.ledger);
         d = CreateFixedPointForDynamicLedger(state.ledger);
 
-        Array lines = GetArrayFromStruct(input, "lines".toCharArray());
+        lines = GetArrayFromStruct(input, "lines".toCharArray());
 
         lineCount = ArrayLength(lines);
 
@@ -60,6 +62,11 @@ public class LedgerOperations {
         }
 
         success = ValidateAndAddTransactionToLedger(state.ledger, t.lines);
+
+        if(success){
+        }else{
+            message.string = "Invalid transaction.".toCharArray();
+        }
 
         return success;
     }

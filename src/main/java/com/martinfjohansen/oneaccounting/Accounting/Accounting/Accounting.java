@@ -245,7 +245,7 @@ public class Accounting{
 
 			if(valid){
 				creditStr = ToString15d(creditSum);
-				debitStr = ToString15d(creditSum);
+				debitStr = ToString15d(debitSum);
 
 				valid = arraysStringsEqual(creditStr, debitStr);
 			}
