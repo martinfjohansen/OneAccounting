@@ -38,7 +38,7 @@ public class CommandHandler {
                     }else if(arraysStringsEqual(command, "IsValidDiskFormat".toCharArray())){
                         success = IsValidDiskFormat(disk, message);
                     }else if(arraysStringsEqual(command, "AddTransactionToLedger".toCharArray())){
-                        success = AddTransactionToLedger(disk, state, message);
+                        success = AddTransactionToLedger(input.structure, state, message);
                     }else{
                         success = false;
                         message.string = "Unknown command.".toCharArray();

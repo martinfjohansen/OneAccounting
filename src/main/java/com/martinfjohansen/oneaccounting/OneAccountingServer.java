@@ -18,6 +18,7 @@ import static ProcessingUnitController.ProcessingUnitController.ProcessingUnitCo
 import static ProcessingUnitController.ProcessingUnitController.ProcessingUnitController.WaitInterrupt;
 import static Unicode.Unicode.Unicode.UTF16ToUTF8;
 import static Unicode.Unicode.Unicode.UTF8ToUTF16;
+import static com.martinfjohansen.oneaccounting.Accounting.Accounting.Accounting.CreateLedger;
 import static com.martinfjohansen.oneaccounting.CommandHandler.HandleCommand;
 import static com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Structures.*;
 import static com.martinfjohansen.oneaccounting.references.references.references.*;
@@ -49,6 +50,7 @@ public class OneAccountingServer {
         NumberReference entriesRef, entrySizeRef;
 
         state.idles = 0d;
+        state.ledger = CreateLedger(2d);
 
         entriesRef = CreateNumberReference(0d);
         entrySizeRef = CreateNumberReference(0d);

@@ -5,7 +5,25 @@ curl -s 127.0.0.1:8081 --data '{"command": "FormatDisk"}' | pbjson
 curl -s 127.0.0.1:8081 --data '{"command": "IsValidDiskFormat"}' | pbjson
 curl -s 127.0.0.1:8081 --data '{"command": "LoadFromDisk"}' | pbjson
 curl -s 127.0.0.1:8081 --data '{"command": "SaveToDisk"}' | pbjson
-curl -s 127.0.0.1:8081 --data '{"command": "AddTransactionToLedger"}' | pbjson
+curl -s 127.0.0.1:8081 --data '{
+    "command": "AddTransactionToLedger",
+    "date": "2026-11-22",
+    "description": "prepaid sale",
+    "lines": [
+        {"account": "1.8.1", "type": "Debit", "amount": 125},
+        {"account": "3.4.2", "type": "Credit", "amount": 125}
+    ]
+    }' | pbjson
 
 
 
+
+curl -s 127.0.0.1:8081 --data '{
+    "command": "AddTransactionToLedger",
+    "date": "2026-11-22",
+    "description": "prepaid sale",
+    "lines": [
+        {"account": "1.8.1", "type": "Debit", "amount": 125},
+        {"account": "3.4.2", "type": "Credit", "amount": 1}
+    ]
+    }' | pbjson
