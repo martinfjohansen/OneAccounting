@@ -49,7 +49,7 @@ public class LedgerOperations {
 
             amount = GetNumberFromStruct(line, "amount".toCharArray());
             type = GetStringFromStruct(line, "type".toCharArray());
-            account = GetStringFromStruct(line, "type".toCharArray());
+            account = GetStringFromStruct(line, "account".toCharArray());
 
             if(arraysStringsEqual(type, "Debit".toCharArray())){
                 Assign15d(d, amount);
