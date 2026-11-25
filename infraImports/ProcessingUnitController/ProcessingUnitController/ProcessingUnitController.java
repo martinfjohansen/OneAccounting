@@ -10,6 +10,7 @@ public class ProcessingUnitController {
         ProcessingUnitControllerStructure puc = new ProcessingUnitControllerStructure();
 
         puc.puMessageReady = new Semaphore(0);
+        puc.wasException = false;
 
         return puc;
     }
@@ -22,5 +23,9 @@ public class ProcessingUnitController {
                 throw new RuntimeException(e);
             }
         }
+    }
+
+    public static boolean WasException(ProcessingUnitControllerStructure puc){
+        return puc.wasException;
     }
 }

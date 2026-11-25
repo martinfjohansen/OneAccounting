@@ -14,8 +14,7 @@ import static Disk.Disk.Disk.Entries;
 import static JSON.Parser.Parser.ReadJSON;
 import static JSON.Writer.Writer.WriteJSON;
 import static ProcessingUnit.ProcessingUnitServer.ProcessingUnitServer.*;
-import static ProcessingUnitController.ProcessingUnitController.ProcessingUnitController.CreateJavaPUC;
-import static ProcessingUnitController.ProcessingUnitController.ProcessingUnitController.WaitInterrupt;
+import static ProcessingUnitController.ProcessingUnitController.ProcessingUnitController.*;
 import static Unicode.Unicode.Unicode.UTF16ToUTF8;
 import static Unicode.Unicode.Unicode.UTF8ToUTF16;
 import static com.martinfjohansen.oneaccounting.Accounting.Accounting.Accounting.CreateLedger;
@@ -42,7 +41,12 @@ public class OneAccountingServer {
         }
 
         for(;;){
-            OneAccountingIteration(puc, client, disk, state);
+            try {
+                OneAccountingIteration(puc, client, disk, state);
+            }catch(Exception e){
+                puc.wasException = true;
+                e.printStackTrace();
+            }
         }
     }
 
@@ -81,6 +85,20 @@ public class OneAccountingServer {
         outputDataRef = new DataReference();
         outputDataRef.data = CreateNewStructData();
 
+        if(WasException(puc)){
+            if(state.processing){
+                output = CreateNewStructData();
+                AddBooleanToStruct(output.structure, "success".toCharArray(), false);
+                AddStringToStruct(output.structure, "message".toCharArray(), "Processing command failed with internal error.".toCharArray());
+                outputJSON = WriteJSON(output);
+                UTF16ToUTF8(outputJSON, outputBytes);
+
+                state.processing = false;
+
+                ServerSend(clientPort, outputBytes.bytes);
+            }
+        }
+
         WaitInterrupt(puc, 10d);
 
         requestAvailable = ServerCheck(clientPort);
@@ -88,6 +106,8 @@ public class OneAccountingServer {
         if(requestAvailable){
             requestBytesRef = new ByteArrayReference();
             ServerReceive(clientPort, requestBytesRef);
+
+            state.processing = true;
 
             inputJsonRef = new StringReference();
             success = UTF8ToUTF16(requestBytesRef.bytes, inputJsonRef);
@@ -120,6 +140,8 @@ public class OneAccountingServer {
                 outputJSON = WriteJSON(output);
                 UTF16ToUTF8(outputJSON, outputBytes);
             }
+
+            state.processing = false;
 
             ServerSend(clientPort, outputBytes.bytes);
         }

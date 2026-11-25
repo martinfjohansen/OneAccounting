@@ -13,4 +13,5 @@ public class OneAccountingState {
     public Structure ledger;
     public AccountPlan accountPlan;
     public boolean accountPlanSet;
+    public boolean processing;
 }
