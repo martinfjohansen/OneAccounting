@@ -28,6 +28,7 @@ curl -s 127.0.0.1:8081 --data '{"command": "ComputeAccountBalance", "account": "
 
 
 curl -s 127.0.0.1:8081 --data '{"command": "AddMonthlyAccruals"}' | pbjson
-curl -s 127.0.0.1:8081 --data '{"command": "ComputeAccountBalances"}' | pbjson
+curl -s 127.0.0.1:8081 --data '{"command": "LoadIFRSAccountPlan"}' | pbjson
+curl -s 127.0.0.1:8081 --data '{"command": "ComputeAccountBalances", "depth": 1, "to": "2026-11-23"}' | pbjson
 
-
+curl -s 127.0.0.1:8081 --data '{"command": "ComputeAccountBalances", "depth": 0, "to": "2026-11-23"}' | jq -r .data

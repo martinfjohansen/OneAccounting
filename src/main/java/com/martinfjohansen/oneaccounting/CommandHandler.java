@@ -3,6 +3,7 @@ package com.martinfjohansen.oneaccounting;
 import Disk.Disk.DiskStructure;
 import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Data;
 import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.DataReference;
+import com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Structure;
 import com.martinfjohansen.oneaccounting.accountingops.LedgerOperations;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
 
@@ -48,6 +49,8 @@ public class CommandHandler {
                         success = AddMonthlyAccruals(input.structure, outputDataRef, state, message);
                     }else if(arraysStringsEqual(command, "ComputeAccountBalances".toCharArray())){
                         success = ComputeAccountBalances(input.structure, outputDataRef, state, message);
+                    }else if(arraysStringsEqual(command, "LoadIFRSAccountPlan".toCharArray())){
+                        success = LoadIFRSAccountPlan(input.structure, state, message);
                     }else{
                         success = false;
                         message.string = "Unknown command.".toCharArray();
@@ -65,6 +68,5 @@ public class CommandHandler {
 
         return success;
     }
-
 
 }

@@ -10,10 +10,10 @@ import com.martinfjohansen.oneaccounting.datetime.DateCalculations.Date;
 import com.martinfjohansen.oneaccounting.references.references.StringReference;
 
 import static com.martinfjohansen.oneaccounting.Accounting.Accounting.Accounting.*;
+import static com.martinfjohansen.oneaccounting.Accounting.Accounting.Accounting.ComputeAccountBalances;
 import static com.martinfjohansen.oneaccounting.DataStructures.Array.Arrays.Arrays.*;
 import static com.martinfjohansen.oneaccounting.DataStructures.Array.Structures.Structures.*;
-import static com.martinfjohansen.oneaccounting.FixedPointArithmetic.FixedPointArithmetic15d.FixedPointArithmetic15d.Assign15d;
-import static com.martinfjohansen.oneaccounting.FixedPointArithmetic.FixedPointArithmetic15d.FixedPointArithmetic15d.ToString15d;
+import static com.martinfjohansen.oneaccounting.FixedPointArithmetic.FixedPointArithmetic15d.FixedPointArithmetic15d.*;
 import static com.martinfjohansen.oneaccounting.arraysarrays.arrays.arrays.arraysStringsEqual;
 import static com.martinfjohansen.oneaccounting.datetime.DateCalculations.DateCalculations.DateFromStringISO8601;
 
@@ -78,6 +78,9 @@ public class LedgerOperations {
         Account account;
         char [] fromStr, toStr, accountStr;
         Date from, to;
+        Structure output;
+        FixedPoint15d diff;
+        double outputFormat;
 
         accountStr = GetStringFromStruct(input, "account".toCharArray());
         fromStr = GetStringFromStruct(input, "from".toCharArray());
@@ -88,9 +91,32 @@ public class LedgerOperations {
         sledger = LedgerDynamicToStatic(state.ledger);
         account = Accounting.ComputeAccountBalance(sledger, accountStr, from, to);
 
-        accountStr = AccountToString(account);
+        diff = Copy15d(account.endingBalance);
+        Subtract15d(diff, diff, account.startingBalance);
 
-        outputRef.data = CreateStringData(accountStr);
+        output = CreateStructure();
+
+        outputFormat = 1d;
+
+        if(outputFormat == 0d){
+            AddNumberToStruct(output, "start".toCharArray(), account.startingBalance.number);
+            AddNumberToStruct(output, "end".toCharArray(), account.endingBalance.number);
+            AddNumberToStruct(output, "change".toCharArray(), diff.number);
+            AddNumberToStruct(output, "credit".toCharArray(), account.sumCredit.number);
+            AddNumberToStruct(output, "debit".toCharArray(), account.sumDebit.number);
+        }else if(outputFormat == 1d) {
+            AddStringToStruct(output, "start".toCharArray(), FormatToStringWithSymbols15d(account.startingBalance, 2d, "".toCharArray(), ".".toCharArray()));
+            AddStringToStruct(output, "end".toCharArray(), FormatToStringWithSymbols15d(account.endingBalance, 2d, "".toCharArray(), ".".toCharArray()));
+            AddStringToStruct(output, "change".toCharArray(), FormatToStringWithSymbols15d(diff, 2d, "".toCharArray(), ".".toCharArray()));
+            AddStringToStruct(output, "credit".toCharArray(), FormatToStringWithSymbols15d(account.sumCredit, 2d, "".toCharArray(), ".".toCharArray()));
+            AddStringToStruct(output, "debit".toCharArray(), FormatToStringWithSymbols15d(account.sumDebit, 2d, "".toCharArray(), ".".toCharArray()));
+
+        }else if(outputFormat == 2d) {
+            accountStr = AccountToString(account);
+            outputRef.data = CreateStringData(accountStr);
+        }
+
+        outputRef.data = CreateStructData(output);
 
         success = true;
 
@@ -140,10 +166,48 @@ public class LedgerOperations {
 
     public static boolean ComputeAccountBalances(Structure input, DataReference outputRef, OneAccountingState state, StringReference message) {
         boolean success;
+        Ledger sledger;
+        char [] toStr, accountSummaryStr;
+        Date to;
+        DataReference balanceSheetRef;
+        double outputFormat, depth;
 
-        success = false;
-        message.string = "Not implemented.".toCharArray();
+        balanceSheetRef = new DataReference();
+
+        toStr = GetStringFromStruct(input, "to".toCharArray());
+        to = DateFromStringISO8601(toStr);
+
+        depth = GetNumberFromStruct(input, "depth".toCharArray());
+
+        //success = false;
+        //message.string = "Not implemented.".toCharArray();
+
+        sledger = LedgerDynamicToStatic(state.ledger);
+        sledger.accountPlan = state.accountPlan;
+
+        success = Accounting.ComputeAccountBalances(sledger, depth, to, balanceSheetRef);
+
+        if(success) {
+
+            outputFormat = 1d;
+
+            if (outputFormat == 0d) {
+
+            } else if (outputFormat == 1d) {
+                accountSummaryStr = AccountBalancesToString(balanceSheetRef.data.structure);
+                outputRef.data = CreateStringData(accountSummaryStr);
+            }
+        }else{
+            message.string = "Error computing account balances.".toCharArray();
+        }
 
         return success;
+    }
+
+    public static boolean LoadIFRSAccountPlan(Structure structure, OneAccountingState state, StringReference message) {
+        state.accountPlanSet = true;
+        state.accountPlan = GetIFRSAccountPlan();
+
+        return true;
     }
 }
